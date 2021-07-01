@@ -1,0 +1,15 @@
+* {
+    font-family: Helvetica, sans-serif, "Arial", "Calibri";
+    font-weight: bold;
+}
+header {
+    vertical-align: middle;
+    font-size: 10em;
+    text-align: center;
+}
+html, body {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
