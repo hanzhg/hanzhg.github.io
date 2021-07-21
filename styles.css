@@ -1,32 +1,36 @@
 * {
-    font-family: "Helvetica", "Arial", "Calibri";
+    font-family: "Helvetica", "sans-serif", "Calibri";
     font-weight: bold;
 }
 
 body,
 html {
-    height: 100%;
-    width: 100%;
     margin: 0;
-    display: flex;
     padding: 0;
     overflow: hidden;
 }
 
-.text {
-    height: 100%;
-    width: 100%;
-    font-size: 2em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    user-select: none;
+#container {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+#text {
+    user-select: none;
+    font-size: 2em;
 }
 
 #canvas {
-    position: relative;
+    background-color: white;
+    display: flex;
     z-index: -1;
 }
 
+.button {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+}

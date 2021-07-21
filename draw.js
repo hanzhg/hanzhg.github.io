@@ -14,28 +14,54 @@ let mouseY = window.innerHeight / 2
 let nameDrawn = "Han Zhang";
 let drawnWords = [];
 var i = 0;
-var moving = false;
+var mouseDown = false;
+var click = true;
+
+const button = document.querySelector('.button');
+
+button.addEventListener('click', function () {
+    console.log("hello");
+    if (click) {
+        click = !click
+        document.getElementById('canvas').style.backgroundColor = "black";
+        document.getElementById('text').style.color = "white";
+    } else {
+        click = true
+        document.getElementById('canvas').style.backgroundColor = "white";
+        document.getElementById('text').style.color = "black";
+    }
+})
 
 const draw = function () {
     context.font = 'bold 2em Arial';
-    context.fillStyle = '#ffffff';
+
     // context.fillRect(0, 0, canvas.width, canvas.height);
-    context.fillStyle = "black";
+
+    if (click) {
+        context.fillStyle = "black";
+    } else {
+        context.fillStyle = "white";
+    }
+
     context.textAlign = "center";
 
     context.save();
+
     context.translate(currentX, currentY);
+
     context.rotate((-Math.PI + i) / 180);
-    if (moving) {
+
+    if (mouseDown) {
         i += 10
         context.fillText(nameDrawn, 0, 10);
     } else {
         i -= 10
     }
-    context.restore();
     
+    context.restore();
+
     // context.fillText(nameDrawn, currentX, currentY + 10);
-    drawPreviouslyDrawnWords()
+    // drawPreviouslyDrawnWords()
 
     currentX = currentX + (mouseX - currentX) * 0.1
     currentY = currentY + (mouseY - currentY) * 0.1
@@ -52,26 +78,26 @@ const draw = function () {
 // }, false);
 
 document.addEventListener('mousedown', function () {
-    if (moving) {
-        moving = !moving
+    if (mouseDown) {
+        mouseDown = !mouseDown
     } else {
-        moving = true
+        mouseDown = true
     }
 }, false);
 
 document.addEventListener('mouseup', function () {
-    if (moving) {
-        moving = !moving
+    if (mouseDown) {
+        mouseDown = !mouseDown
     } else {
-        moving = true
+        mouseDown = true
     }
 }, false);
 
-function drawPreviouslyDrawnWords() {
-    drawnWords.forEach(item => {
-        context.fillText(item.word, item.x, item.y);
-    })
-}
+// function drawPreviouslyDrawnWords() {
+//     drawnWords.forEach(item => {
+//         context.fillText(item.word, item.x, item.y);
+//     })
+// }
 
 document.addEventListener("mousemove", function (event) {
     mouseX = event.pageX
