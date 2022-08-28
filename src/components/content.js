@@ -3,7 +3,7 @@ import Socials from "./socials";
 export default function Content() {
     return (
         <div id="content">
-            <img src="./pfp.webp" alt="Profile" className="fade-in"></img>
+            <img src="./pfp.webp" alt="Profile"></img>
             <div>
                 👋 Hi, I'm Han, a final-year Computer Science student @ <a className="links" href="https://www.umontreal.ca" target="_blank" rel="noopener noreferrer">Université de Montréal</a>
                 <br></br>

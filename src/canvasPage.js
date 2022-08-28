@@ -1,13 +1,11 @@
+import Canvas from "./components/canvas";
 import Navbar from "./components/navbar";
-import Content from "./components/content";
 
-function App() {
+export default function CanvasPage() {
     return (
         <>
             <Navbar />
-            <Content />
+            <Canvas />
         </>
     );
 }
-
-export default App;

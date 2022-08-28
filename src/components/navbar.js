@@ -1,64 +1,66 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const keyName = 'theme'
+const keyName = "theme";
 
-const onClick = () => {
-    if (theme.value === 'light') {
-        theme.value = 'dark'
-        document.querySelector('#button').className = "icon fas fa-sun"
+function onClick(e) {
+    e.stopPropagation();
+    if (theme.value === "light") {
+        theme.value = "dark";
+        document.querySelector("#switch").className = "icon fas fa-sun";
     } else {
-        theme.value = 'light'
-        document.querySelector('#button').className = "icon fas fa-moon"
+        theme.value = "light";
+        document.querySelector("#switch").className = "icon fas fa-moon";
     }
-    setPreference()
+    setPreference();
 }
 
 const getColorPreference = () => {
     if (localStorage.getItem(keyName)) {
-        return localStorage.getItem(keyName)
+        return localStorage.getItem(keyName);
     } else {
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
     }
-}
+};
 
 const setPreference = () => {
-    localStorage.setItem(keyName, theme.value)
-    reflectPreference()
-}
+    localStorage.setItem(keyName, theme.value);
+    reflectPreference();
+};
 
 const reflectPreference = () => {
-    document.firstElementChild
-        .setAttribute('data-theme', theme.value)
-}
+    document.firstElementChild.setAttribute("data-theme", theme.value);
+};
 
 const theme = {
     value: getColorPreference(),
-}
+};
 
-reflectPreference()
+reflectPreference();
 
 window.onchange = () => {
-    reflectPreference()
-    if (theme.value === 'light') {
-        document.querySelector('#button').className = "icon fas fa-moon"
+    reflectPreference();
+    if (theme.value === "light") {
+        document.querySelector("#switch").className = "icon fas fa-moon";
     } else {
-        document.querySelector('#button').className = "icon fas fa-sun"
+        document.querySelector("#switch").className = "icon fas fa-sun";
     }
-    document.querySelector('#button').addEventListener('click', onClick)
-}
+    document.querySelector("#switch").addEventListener("click", onClick);
+};
 
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({
-    matches: isDark
-}) => {
-    if (isDark) {
-        theme.value = 'dark'
-        document.querySelector('#button').className = "icon fas fa-sun"
-    } else {
-        theme.value = 'light'
-        document.querySelector('#button').className = "icon fas fa-moon"
-    }
-    setPreference()
-})
+window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", ({ matches: isDark }) => {
+        if (isDark) {
+            theme.value = "dark";
+            document.querySelector("#switch").className = "icon fas fa-sun";
+        } else {
+            theme.value = "light";
+            document.querySelector("#switch").className = "icon fas fa-moon";
+        }
+        setPreference();
+    });
 
 export default function Navbar() {
     return (
@@ -67,12 +69,20 @@ export default function Navbar() {
                 <div className="center">
                     <div id="name">Han Zhang</div>
                 </div>
-                <button id="button" className="icon fas fa-moon" onClick={onClick}></button>
+                <button
+                    id="switch"
+                    className="icon fas fa-moon"
+                    onClick={onClick}
+                ></button>
             </div>
             <nav>
-                <li><Link to={"/"}>Home</Link></li>
+                <li>
+                    <Link to={"/"}>Home</Link>
+                </li>
                 {/* <li><Link to={"/canvas"}>Game of Life</Link></li> */}
-                <li><Link to={"/canvas"}>Canvas</Link></li>
+                <li>
+                    <Link to={"/canvas"}>Canvas</Link>
+                </li>
             </nav>
         </div>
     );

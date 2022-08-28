@@ -88,8 +88,6 @@ nav a {
 #content {
     font-size: 15pt;
     line-height: 2;
-    padding: 0 10px 0;
-    position: relative;
     text-align: center;
     transition: 600ms;
     color: var(--text-primary);
@@ -119,8 +117,17 @@ input {
     list-style: none;
 }
 
+select {
+    border-radius: 8px;
+    text-align: center;
+    color: #333;
+    font-size: 14px;
+    margin: 0 5px 0;
+    padding: 5px 0;
+}
+
 .box {
-    margin: 20px auto 15px;
+    margin: 20px auto 5px;
     display: flex;
 }
 
@@ -131,7 +138,7 @@ input {
     margin: 0 0 0 45px;
 }
 
-#button {
+#switch {
     color: var(--text-primary);
     background-color: transparent;
     border: none;
@@ -159,8 +166,8 @@ input {
     transition: 600ms;
 }
 
-.fade-in {
-    padding: 20px 0 20px 0;
+img {
+    padding: 10px 0 20px 0;
     width: auto;
     max-height: 500px;
     height: auto;

@@ -4,20 +4,20 @@ export default function NotFound() {
     const container = {
         display: "flex",
         height: "100vh",
-    }
+    };
 
     const centerLink = {
         textAlign: "center",
-        height: "100%"
-    }
+        height: "100%",
+    };
 
     const centerText = {
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center",
         margin: "auto",
     };
 
-    return(
+    return (
         <div>
             <Navbar />
             <div style={container}>
