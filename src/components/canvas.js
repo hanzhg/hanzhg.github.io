@@ -14,10 +14,12 @@ export default function Canvas() {
 
     useEffect(() => {
         const canvas = canvasRef.current;
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        canvas.style.width = `${window.innerWidth}px`;
-        canvas.style.height = `${window.innerHeight}px`;
+        const width = window.innerWidth;
+        const height = window.innerHeight - 130;
+        canvas.width = width;
+        canvas.height = height;
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
 
         const context = canvas.getContext("2d");
         context.scale(1, 1);
@@ -45,8 +47,8 @@ export default function Canvas() {
 
                 currentContext.lineWidth = 10;
                 currentContext.lineJoin = "round";
-                currentContext.moveTo(lastPosition.x, lastPosition.y - 155);
-                currentContext.lineTo(x, y - 155);
+                currentContext.moveTo(lastPosition.x, lastPosition.y - 130);
+                currentContext.lineTo(x, y - 130);
                 currentContext.closePath();
                 currentContext.stroke();
 

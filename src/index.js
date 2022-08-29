@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import "./styles.css";
+import "./queries.css"
 import { HashRouter, Routes, Route } from "react-router-dom";
-import NotFound from "./404";
+import App from "./App";
 import CanvasPage from "./canvasPage";
+import Message from "./components/message";
+import Navbar from "./components/navbar";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,7 +16,12 @@ root.render(
             <Routes>
                 <Route path="" element={<App />} />
                 <Route path="/canvas" element={<CanvasPage />} />
-                <Route path="*" element={<NotFound />} />
+                <Route path="*" element={
+                    <>
+                        <Navbar />
+                        <Message text = {"404 - Not Found!"} />
+                    </>
+                } />
             </Routes>
         </HashRouter>
     </React.StrictMode>

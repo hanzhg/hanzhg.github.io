@@ -3,10 +3,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
+  transition: 600ms;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  transition: 600ms;
 }
 
 code {

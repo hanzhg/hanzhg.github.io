@@ -10,27 +10,23 @@
 
 body,
 html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
     transition: 600ms;
     background-color: var(--background);
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 #name {
     font-weight: 700;
     user-select: none;
-    font-size: 23pt;
+    font-size: 21pt;
     transition: 600ms;
     color: var(--text-primary);
 }
 
 canvas {
     transition: all 600ms;
-    display: flex;
-    z-index: -1;
-    overflow: hidden;
 }
 
 nav ul {
@@ -46,13 +42,14 @@ nav {
     list-style: none;
     padding: 0;
     text-align: center;
+    padding-bottom: 2px;
 }
 
 nav li {
     display: inline-block;
     border-radius: 10px;
     width: 130px;
-    padding: 10px 12px;
+    padding: 0 12px;
     user-select: none;
 }
 
@@ -86,11 +83,17 @@ nav a {
 }
 
 #content {
-    font-size: 15pt;
     line-height: 2;
     text-align: center;
     transition: 600ms;
     color: var(--text-primary);
+}
+
+#text {
+    padding: 0 5px;
+    max-width: 900px;
+    font-size: 20px;
+    margin: auto;
 }
 
 input {
@@ -99,13 +102,12 @@ input {
 
 #buttons {
     text-align: center;
-    padding: 5px
+    margin: 10px 0 5px 0;
 }
 
 .controls {
     border-radius: 8px;
     border-width: 0;
-    color: #333;
     font-size: 14px;
     line-height: 20px;
     margin: auto;
@@ -120,14 +122,13 @@ input {
 select {
     border-radius: 8px;
     text-align: center;
-    color: #333;
     font-size: 14px;
     margin: 0 5px 0;
     padding: 5px 0;
 }
 
 .box {
-    margin: 20px auto 5px;
+    margin: 15px auto 10px;
     display: flex;
 }
 
@@ -135,7 +136,7 @@ select {
     flex: 1;
     display: flex;
     justify-content: center;
-    margin: 0 0 0 45px;
+    margin-left: 45px;
 }
 
 #switch {
@@ -155,9 +156,6 @@ select {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     outline-offset: 5px;
-    @media (hover: none) {
-        --size: 48px;
-    }
 }
 
 .links {
@@ -167,11 +165,9 @@ select {
 }
 
 img {
-    padding: 10px 0 20px 0;
-    width: auto;
+    padding: 15px 0 5px 0;
+    max-width: 60%;
     max-height: 500px;
-    height: auto;
-    width:auto;
     animation: fadeIn ease 2s;
 }
 
