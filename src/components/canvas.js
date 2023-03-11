@@ -15,7 +15,7 @@ export default function Canvas() {
     useEffect(() => {
         const canvas = canvasRef.current;
         const width = window.innerWidth;
-        const height = window.innerHeight - 130;
+        const height = window.innerHeight - 145;
         canvas.width = width;
         canvas.height = height;
         canvas.style.width = `${width}px`;
@@ -39,7 +39,7 @@ export default function Canvas() {
 
                 if (selectedColor === "Rainbow") {
                     currentContext.strokeStyle = `hsl(${hue.current},100%,50%)`;
-                    hue.current++;
+                    hue.current += 3;
                     if (hue.current >= 360) {
                         hue.current = 0;
                     }
@@ -47,8 +47,8 @@ export default function Canvas() {
 
                 currentContext.lineWidth = 10;
                 currentContext.lineJoin = "round";
-                currentContext.moveTo(lastPosition.x, lastPosition.y - 130);
-                currentContext.lineTo(x, y - 130);
+                currentContext.moveTo(lastPosition.x, lastPosition.y - 140);
+                currentContext.lineTo(x, y - 140);
                 currentContext.closePath();
                 currentContext.stroke();
 

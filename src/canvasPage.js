@@ -1,7 +1,7 @@
 import Canvas from "./components/canvas";
 import Navbar from "./components/navbar";
 import Construction from "./components/message";
-import MediaQuery from 'react-responsive';
+import MediaQuery from "react-responsive";
 
 export default function CanvasPage() {
     return (
@@ -11,7 +11,7 @@ export default function CanvasPage() {
                 <Canvas />
             </MediaQuery>
             <MediaQuery maxDeviceWidth={1224}>
-                <Construction text = {"Please use a desktop to interact"}/>
+                <Construction text={"Please use a desktop to interact"} />
             </MediaQuery>
         </>
     );

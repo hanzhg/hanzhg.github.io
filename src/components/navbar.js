@@ -83,6 +83,12 @@ export default function Navbar() {
                 <li>
                     <Link to={"/canvas"}>Canvas</Link>
                 </li>
+                <li>
+                    <Link to={"/calculator"}>Calculator</Link>
+                </li>
+                <li>
+                    <Link to={"/stopwatch"}>Stopwatch</Link>
+                </li>
             </nav>
         </div>
     );

@@ -3,18 +3,23 @@
     --text-primary: black;
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
     --background: black;
     --text-primary: white;
 }
 
 body,
 html {
+    font-family: Helvetica, Arial, sans-serif;
     transition: 600ms;
     background-color: var(--background);
     overflow-x: hidden;
     margin: 0;
     padding: 0;
+    height: 100%;
+    width: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #name {
@@ -42,14 +47,13 @@ nav {
     list-style: none;
     padding: 0;
     text-align: center;
-    padding-bottom: 2px;
 }
 
 nav li {
     display: inline-block;
     border-radius: 10px;
     width: 130px;
-    padding: 0 12px;
+    padding: 2px 12px 10px;
     user-select: none;
 }
 
@@ -62,17 +66,21 @@ nav a {
 }
 
 #icons {
-    text-align: center;
-    margin: 0;
     padding: 0;
+    margin: 10px;
+    /* position: fixed;  
+    left: 0px;  
+    bottom: 5px;  
+    right: 0px; */
+    text-align: center;
 }
 
 #icons a {
-    display: inline-block;
-    margin: 20px 20px;
+    padding: 15px;
+    margin: auto;
     text-decoration: none;
     text-align: center;
-    padding: 0;
+    width: 10%;
 }
 
 #icons i {
@@ -83,21 +91,25 @@ nav a {
 }
 
 #content {
+    padding: 0%;
     line-height: 2;
     text-align: center;
+    align-items: center;
     transition: 600ms;
     color: var(--text-primary);
+    font-size: 20px;
 }
 
 #text {
-    padding: 0 5px;
+    display: inline-block;
     max-width: 900px;
-    font-size: 20px;
-    margin: auto;
+    padding: 0 5px;
+    font-size: calc(0.8rem + 0.3vw);
+    text-align: center;
 }
 
 input {
-    z-index: -2
+    z-index: -2;
 }
 
 #buttons {
@@ -117,6 +129,7 @@ input {
     display: inline;
     overflow: hidden;
     list-style: none;
+    cursor: pointer;
 }
 
 select {
@@ -179,4 +192,111 @@ img {
     100% {
         opacity: 1;
     }
+}
+
+.centered {
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-primary);
+}
+
+.calculator {
+    background-color: var(--text-primary);
+    border-color: var(--text-primary);
+    border-radius: 20px;
+    border-style: solid;
+    border-width: thin;
+    color: var(--background);
+    display: inline-block;
+    margin: 60px auto;
+    padding: 20px;
+    transition: 600ms;
+}
+
+.calculator-container {
+    font-family: Helvetica, Arial, sans-serif;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(4, 50px);
+}
+
+.calculator-screen {
+    background-color: var(--background);
+    border-color: var(--text-primary);
+    border-style: solid;
+    border-width: thin;
+    color: var(--text-primary);
+    font-size: 25px;
+    margin: 40px 0 10px;
+    overflow: hidden;
+    padding: 10px;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    z-index: 10;
+    transition: 600ms;
+    font-weight: 600;
+}
+
+.calculator-button {
+    cursor: pointer;
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+    background-color: var(--background);
+    border-radius: 10px;
+    border-style: solid;
+    border-width: thin;
+    font-size: 20px;
+    padding: 10px 0;
+    transition: 600ms;
+    font-family: inherit;
+}
+
+.calculator-button-big {
+    grid-row-end: span 2;
+}
+
+#timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: calc(5rem + 0.5vw);
+}
+
+#timer span {
+    width: calc(6rem + 0.5vw);
+    display: inline-block;
+    text-align: center;
+}
+
+#lap-times {
+    overflow-y: hidden;
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 200px;
+}
+
+#lap-times thead {
+    padding: 10px;
+}
+
+#lap-times tbody {
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
+    max-height: 100px;
+}
+
+#stopwatch-menu {
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    text-align: center;
+}
+
+#stopwatch-menu button {
+    margin: 0 5px 10px 5px;
 }
