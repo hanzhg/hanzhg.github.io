@@ -1,12 +1,12 @@
 import Navbar from "./components/navbar";
-import Content from "./components/content";
+import Homepage from "./components/homepage";
 import Socials from "./components/socials";
 
 function App() {
     return (
         <>
             <Navbar />
-            <Content />
+            <Homepage />
             <Socials />
         </>
     );

@@ -178,10 +178,10 @@ select {
 }
 
 img {
-    padding: 15px 0 5px 0;
+    padding-top: 15px;
     max-width: 60%;
     max-height: 500px;
-    animation: fadeIn ease 2s;
+    animation: fadeIn ease 1s;
 }
 
 @keyframes fadeIn {
