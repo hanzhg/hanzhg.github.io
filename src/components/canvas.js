@@ -59,12 +59,8 @@ export default function Canvas() {
     );
 
     const clear = () => {
-        contextRef.current.clearRect(
-            0,
-            0,
-            contextRef.current.canvas.width,
-            contextRef.current.canvas.height
-        );
+        const context = contextRef.current;
+        context.clearRect(0, 0, context.canvas.width, context.canvas.height);
     };
 
     const onMouseDown = (e) => {

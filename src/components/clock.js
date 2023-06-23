@@ -1,33 +1,35 @@
 import { useState, useEffect } from 'react';
 
-export default function Clock(){
-    const [date, setDate] = useState(new Date());
-    
-    function refreshClock() {
-      setDate(new Date());
-    }
-    useEffect(() => {
-      setInterval(refreshClock, 100);
-    }, []);
+export default function Clock() {
+	const [date, setDate] = useState(new Date());
 
-    function fixTime(n) {
-        return (n < 10 ? "0" + n : n)
-    }
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setDate(new Date());
+		}, 100);
 
-    const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][date.getDay()];
+		return () => clearInterval(interval);
+	}, []);
 
-    const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][date.getMonth()];
+	function fixTime(n) {
+		return n < 10 ? '0' + n : n.toString();
+	}
 
-    var day = date.getDate();
-    var year = date.getFullYear().toString();
+	const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+	const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    var hour = fixTime(date.getHours());
-    var min = fixTime(date.getMinutes());
-    var sec = fixTime(date.getSeconds());
+	const weekday = weekdays[date.getDay()];
+	const month = months[date.getMonth()];
+	const day = date.getDate();
+	const year = date.getFullYear();
 
-    return (
-      <div id = "text" >
-        {weekday + " " + month + " " + day + " " + year + ", " + hour + ":" + min + ":" + sec}
-      </div>
-    );
+	const hour = fixTime(date.getHours());
+	const min = fixTime(date.getMinutes());
+	const sec = fixTime(date.getSeconds());
+
+	return (
+		<div id="text">
+			{weekday} {month} {day} {year}, {hour}:{min}:{sec}
+		</div>
+	);
 }
