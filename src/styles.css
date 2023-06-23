@@ -254,6 +254,10 @@ img {
     font-family: inherit;
 }
 
+.calculator-button.pressed {
+    background-color: #8d8d8d;
+}
+
 .calculator-button-big {
     grid-row-end: span 2;
 }

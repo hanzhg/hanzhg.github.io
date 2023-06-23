@@ -6,20 +6,34 @@ class CalculatorButton extends Component {
     constructor() {
         super();
 
+        this.state = {
+            isPressed: false,
+        };
+
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick() {
         this.props.onClick(this.props.value);
+        this.setState({ isPressed: true });
+
+        setTimeout(() => {
+            this.setState({ isPressed: false });
+        }, 200);
     }
 
     render() {
+        const { className, value } = this.props;
+        const { isPressed } = this.state;
+
+        const buttonClass = `calculator-button ${className} ${isPressed ? "pressed" : ""}`;
+
         return (
             <button
-                className={`calculator-button ${this.props.className}`}
+                className={buttonClass}
                 onClick={this.handleClick}
             >
-                {this.props.value}
+                {value}
             </button>
         );
     }
