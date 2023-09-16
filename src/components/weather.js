@@ -29,7 +29,7 @@ export default function Weather() {
 
 	return (
 		<div id="text">
-			{weatherTemperature ? `${weatherTemperature}°C` : 'Loading weather data...'}
+			Montréal, QC, {weatherTemperature ? `${weatherTemperature}°C` : 'Loading weather data...'}
 		</div>
 	);
 }
