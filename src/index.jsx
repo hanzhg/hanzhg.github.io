@@ -8,6 +8,7 @@ import Message from "./components/message";
 import Navbar from "./components/navbar";
 import CalculatorPage from "./calculatorPage";
 import StopwatchPage from "./stopwatchPage";
+import ShooterPage from "./shooterPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -18,12 +19,13 @@ root.render(
                 <Route path="/canvas" element={<CanvasPage />} />
                 <Route path="/calculator" element={<CalculatorPage />} />
                 <Route path="/stopwatch" element={<StopwatchPage />} />
+                <Route path="/shooter" element={<ShooterPage />} />
                 <Route
                     path="*"
                     element={
                         <>
                             <Navbar />
-                            <Message text={"404 - Not Found!"} />
+                            <Message text={"404 - Page Not Found"} />
                         </>
                     }
                 />

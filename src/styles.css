@@ -114,16 +114,16 @@ input {
 
 #buttons {
     text-align: center;
-    margin: 10px 0 5px 0;
+    margin: 5px 0 5px 0;
 }
 
 .controls {
     border-radius: 8px;
     border-width: 0;
-    font-size: 14px;
+    font-size: 15pt;
     line-height: 20px;
-    margin: auto;
-    padding: 5px 12px;
+    margin: 0 5px 0;
+    padding: 8px 12px;
     text-align: center;
     max-width: 600px;
     display: inline;
@@ -135,9 +135,10 @@ input {
 select {
     border-radius: 8px;
     text-align: center;
-    font-size: 14px;
+    font-size: 15pt;
     margin: 0 5px 0;
-    padding: 5px 0;
+    padding: 3px 0;
+    border-width: 2px;
 }
 
 .box {
@@ -303,4 +304,46 @@ img {
 
 #stopwatch-menu button {
     margin: 0 5px 10px 5px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh; /* Adjust this to center it vertically within the viewport */
+}
+
+.container {
+    position: relative;
+    width: 300px; /* Adjust container width as needed */
+    margin: 0 auto; /* Center the container horizontally */
+}
+  
+.square-box {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    background-color: lightgray; /* Set your preferred square background color */
+}
+  
+.random-button {
+    position: absolute;
+    background-color: #007bff; /* Set your preferred button color */
+    padding: 30px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%; /* Rounded corners */
+    box-shadow: inset -15px -15px 18px rgba(0, 0, 0, 0.5);
+    background-image: -webkit-linear-gradient(-45deg, rgba(255,255,220,.3) 0%, transparent 100%);
+    background-image: -moz-linear-gradient(-45deg, rgba(255,255,220,.3) 0%, transparent 100%);  
+    background-image: -o-linear-gradient(-45deg, rgba(255,255,220,.3) 0%, transparent 100%);
+    background-image: -ms-linear-gradient(-45deg, rgba(255,255,220,.3) 0%, transparent 100%);
+}
+
+.start-button:hover {
+    background-color: grey; /* Change the color on hover */
+}
+
+p {
+    font-size: 15pt;
 }

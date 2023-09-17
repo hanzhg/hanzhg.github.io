@@ -14,7 +14,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "vite",
+    "start": "vite --port 8080",
     "build": "vite build",
     "preview": "vite preview --port 8080",
     "predeploy": "npm run build",

@@ -89,6 +89,9 @@ export default function Navbar() {
                 <li>
                     <Link to={"/stopwatch"}>Stopwatch</Link>
                 </li>
+                <li>
+                    <Link to={"/shooter"}>Shooter</Link>
+                </li>
             </nav>
         </div>
     );
