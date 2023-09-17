@@ -29,7 +29,7 @@ export default function Clock() {
 
 	return (
 		<div id="text">
-			{weekday} {month} {day} {year}, {hour}:{min}:{sec}
+			{weekday}, {month} {day} {year}, {hour}:{min}:{sec}
 		</div>
 	);
 }
