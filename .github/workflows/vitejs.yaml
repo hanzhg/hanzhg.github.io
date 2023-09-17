@@ -25,7 +25,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: hanzhang.ca
+      url: https://hanzhang.ca/
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
