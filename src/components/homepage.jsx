@@ -1,5 +1,6 @@
 import Clock from "./clock"
-import Weather from "./weather";
+import Weather from "./weather"
+
 export default function Homepage() {
     window.scroll({top: 0, left: 0, behavior: 'smooth' })
     return (
@@ -12,7 +13,7 @@ export default function Homepage() {
         }}
       >
         <div id="content">
-            <img src="./pfp.webp" alt="Profile" />
+            <img src ="/pfp.JPG" />
             <div>
                 <div id="text">
                 👋 Hi, I'm Han, a final-year Computer Science student @ <a className="links" href="https://www.umontreal.ca" target="_blank" rel="noopener noreferrer">Université de Montréal.</a>
