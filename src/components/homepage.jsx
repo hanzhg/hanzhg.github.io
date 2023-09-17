@@ -1,4 +1,4 @@
-import Clock from "./clock"
+import TimeAndDate from "./timeAndDate"
 import Weather from "./weather"
 
 export default function Homepage() {
@@ -28,7 +28,7 @@ export default function Homepage() {
                 Outside of tech, I'm also interested in fashion and taking <a className="links" href="https://www.instagram.com/hanzhg" target="_blank" rel="noopener noreferrer">photos</a>.
                 </div>
             </div>
-            <Clock />
+            <TimeAndDate />
             <br />
             <Weather />
         </div>
