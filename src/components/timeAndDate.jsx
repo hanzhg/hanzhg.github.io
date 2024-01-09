@@ -28,7 +28,7 @@ export default function TimeAndDate() {
 	const sec = fixTime(date.getSeconds());
 
 	return (
-		<div id="text">
+		<div>
 			{weekday}, {month} {day} {year}, {hour}:{min}:{sec}
 		</div>
 	);

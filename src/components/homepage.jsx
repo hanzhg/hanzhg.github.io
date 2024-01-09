@@ -1,21 +1,14 @@
 import TimeAndDate from "./timeAndDate"
 import Weather from "./weather"
+import Socials from "./socials";
 
 export default function Homepage() {
     window.scroll({top: 0, left: 0, behavior: 'smooth' })
     return (
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '85vh',
-        }}
-      >
+      <div className="centered">
         <div id="content">
             <img src ="/pfp.JPG" />
-            <div>
-                <div id="text">
+                <div>
                 👋 Hi, I'm Han, a final-year Computer Science student @ <a className="links" href="https://www.umontreal.ca" target="_blank" rel="noopener noreferrer">Université de Montréal.</a>
                 <br />
                 I'm currently working as a Technology Analyst @ <a className="links" href="https://www.morganstanley.com/" target="_blank" rel="noopener noreferrer">Morgan Stanley</a> in the App Services Infra team.
@@ -27,10 +20,9 @@ export default function Homepage() {
                 <br />
                 Outside of tech, I'm also interested in fashion and taking <a className="links" href="https://www.instagram.com/hanzhg" target="_blank" rel="noopener noreferrer">photos</a>.
                 </div>
-            </div>
             <TimeAndDate />
-            <br />
             <Weather />
+            <Socials />
         </div>
       </div>
     );

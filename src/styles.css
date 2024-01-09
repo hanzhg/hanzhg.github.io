@@ -67,7 +67,8 @@ nav a {
 
 #icons {
     padding: 0;
-    margin: 10px;
+    margin: 0;
+    height: fit-content;
     /* position: fixed;  
     left: 0px;  
     bottom: 5px;  
@@ -76,36 +77,24 @@ nav a {
 }
 
 #icons a {
-    padding: 15px;
-    margin: auto;
     text-decoration: none;
     text-align: center;
-    width: 10%;
-}
-
-#icons i {
     font-size: 32px;
-    width: 32px;
+    margin: 15px;
     transition: 600ms;
     color: var(--text-primary);
 }
 
 #content {
-    padding: 0%;
+    padding: 0 15px;
     line-height: 2;
     text-align: center;
     align-items: center;
     transition: 600ms;
     color: var(--text-primary);
-    font-size: 20px;
-}
-
-#text {
-    display: inline-block;
-    max-width: 900px;
-    padding: 0 5px;
-    font-size: calc(0.8rem + 0.3vw);
-    text-align: center;
+    max-width: 880px;
+    font-size: 15pt;
+    height: 65vh;
 }
 
 input {
@@ -179,7 +168,6 @@ select {
 }
 
 img {
-    padding-top: 15px;
     max-width: 60%;
     max-height: 500px;
     animation: fadeIn ease 1s;
@@ -196,11 +184,17 @@ img {
 }
 
 .centered {
-    height: 85vh;
+    height: calc(100vh - 150px);
     display: flex;
     justify-content: center;
     align-items: center;
     color: var(--text-primary);
+}
+
+@media (max-width: 480px) {
+    .centered {
+      height: auto;
+    }
 }
 
 .calculator {
@@ -346,4 +340,6 @@ img {
 
 p {
     font-size: 15pt;
+    color: var(--text-primary);
+    transition: 600ms;
 }

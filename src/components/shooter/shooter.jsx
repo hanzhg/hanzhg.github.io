@@ -72,7 +72,7 @@ export default function Shooter() {
                 <button className="controls" onClick={resetGame}>
                 Reset
                 </button>
-              <p>Button Count: {buttonCount}</p>
+              <p>Target Hit Count: {buttonCount}</p>
           </div>
       </div>
     );

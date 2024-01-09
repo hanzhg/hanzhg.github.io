@@ -28,7 +28,7 @@ export default function Weather() {
 	}, []);
 
 	return (
-		<div id="text">
+		<div>
 			Montréal, QC, {weatherTemperature ? `${weatherTemperature}°C` : 'Loading weather data...'}
 		</div>
 	);
