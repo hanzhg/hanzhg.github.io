@@ -15,7 +15,6 @@ import "../../styles.css";
 class Calculator extends Component {
     constructor() {
         super();
-
         [
             "number",
             "clearAll",

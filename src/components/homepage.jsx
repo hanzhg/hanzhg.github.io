@@ -9,7 +9,7 @@ export default function Homepage() {
         <div id="content">
             <img src ="/pfp.JPG" />
                 <div>
-                👋 Hi, I'm Han, a final-year Computer Science student @ <a className="links" href="https://www.umontreal.ca" target="_blank" rel="noopener noreferrer">Université de Montréal.</a>
+                👋, I'm Han, a final-year Computer Science student @ <a className="links" href="https://www.umontreal.ca" target="_blank" rel="noopener noreferrer">Université de Montréal.</a>
                 <br />
                 I'm currently working as a Technology Analyst @ <a className="links" href="https://www.morganstanley.com/" target="_blank" rel="noopener noreferrer">Morgan Stanley</a> in the App Services Infra team.
                 <br />

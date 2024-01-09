@@ -191,9 +191,17 @@ img {
     color: var(--text-primary);
 }
 
-@media (max-width: 480px) {
+@media (min-width: 320px) and (max-width: 480px) {
     .centered {
-      height: auto;
+        height: auto;
+    }
+    img {
+        padding-top: 10px;
+        height: 200px;
+    }
+    #content {
+        font-size: 1em;
+
     }
 }
 
@@ -240,13 +248,13 @@ img {
     border-color: var(--text-primary);
     color: var(--text-primary);
     background-color: var(--background);
-    border-radius: 10px;
+    border-radius: 13px;
     border-style: solid;
     border-width: thin;
     font-size: 20px;
     padding: 10px 0;
     transition: 600ms;
-    font-family: inherit;
+    font-weight: bold;
 }
 
 .calculator-button.pressed {
@@ -300,33 +308,20 @@ img {
     margin: 0 5px 10px 5px;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 90vh; /* Adjust this to center it vertically within the viewport */
-}
-
-.container {
-    position: relative;
-    width: 300px; /* Adjust container width as needed */
-    margin: 0 auto; /* Center the container horizontally */
-}
-  
 .square-box {
     position: relative;
     width: 500px;
     height: 500px;
-    background-color: lightgray; /* Set your preferred square background color */
+    background-color: lightgray;
 }
-  
+
 .random-button {
     position: absolute;
-    background-color: #007bff; /* Set your preferred button color */
+    background-color: #007bff;
     padding: 30px;
     border: none;
     cursor: pointer;
-    border-radius: 50%; /* Rounded corners */
+    border-radius: 50%;
     box-shadow: inset -15px -15px 18px rgba(0, 0, 0, 0.5);
     background-image: -webkit-linear-gradient(-45deg, rgba(255,255,220,.3) 0%, transparent 100%);
     background-image: -moz-linear-gradient(-45deg, rgba(255,255,220,.3) 0%, transparent 100%);  
@@ -335,7 +330,7 @@ img {
 }
 
 .start-button:hover {
-    background-color: grey; /* Change the color on hover */
+    background-color: grey;
 }
 
 p {

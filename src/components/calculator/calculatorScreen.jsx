@@ -5,15 +5,14 @@ import '../../styles.css';
 export default function CalculatorScreen(props) {
     return (
         <div style={{
-            "gridColumnEnd": 'span 4',
-            'fontSize': '15px',
+            gridColumnEnd: 'span 4'
         }}>
             <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                fontSize: '20px',
+                textAlign: 'center'
             }}>
-            Han Instruments HI-25 XS
+            HI-25ZH
+            <div style={{fontSize:'16px', paddingTop: '5px'}}>Han Instruments</div>
             </div>
             <div className="calculator-screen">
                 {props.value}
