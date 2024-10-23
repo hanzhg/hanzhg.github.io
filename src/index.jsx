@@ -1,35 +1,38 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./styles.css";
 import { HashRouter, Routes, Route } from "react-router-dom";
+import "./styles.css";
 import App from "./App";
 import CanvasPage from "./canvasPage";
-import Message from "./components/message";
-import Navbar from "./components/navbar";
 import CalculatorPage from "./calculatorPage";
 import StopwatchPage from "./stopwatchPage";
 import ShooterPage from "./shooterPage";
+import Navbar from "./components/navbar";
+import Message from "./components/message";
+
+const NotFoundPage = () => (
+    <>
+        <Navbar />
+        <Message text={"404 - Page Not Found"} />
+    </>
+);
+
+const AppRoutes = () => (
+    <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/canvas" element={<CanvasPage />} />
+        <Route path="/calculator" element={<CalculatorPage />} />
+        <Route path="/stopwatch" element={<StopwatchPage />} />
+        <Route path="/shooter" element={<ShooterPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
         <HashRouter>
-            <Routes>
-                <Route path="" element={<App />} />
-                <Route path="/canvas" element={<CanvasPage />} />
-                <Route path="/calculator" element={<CalculatorPage />} />
-                <Route path="/stopwatch" element={<StopwatchPage />} />
-                <Route path="/shooter" element={<ShooterPage />} />
-                <Route
-                    path="*"
-                    element={
-                        <>
-                            <Navbar />
-                            <Message text={"404 - Page Not Found"} />
-                        </>
-                    }
-                />
-            </Routes>
+            <AppRoutes />
         </HashRouter>
     </React.StrictMode>
 );

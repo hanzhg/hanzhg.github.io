@@ -11,25 +11,23 @@ export default function TimeAndDate() {
 		return () => clearInterval(interval);
 	}, []);
 
-	function fixTime(n) {
-		return n < 10 ? '0' + n : n.toString();
-	}
-
-	const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-	const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-	const weekday = weekdays[date.getDay()];
-	const month = months[date.getMonth()];
-	const day = date.getDate();
-	const year = date.getFullYear();
-
-	const hour = fixTime(date.getHours());
-	const min = fixTime(date.getMinutes());
-	const sec = fixTime(date.getSeconds());
+	const formatDate = (date) => {
+		const options = {
+			weekday: 'long',
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+			hour: '2-digit',
+			minute: '2-digit',
+			second: '2-digit',
+			hour12: false,
+		};
+		return date.toLocaleString('en-US', options).replace(' at ', ', ');
+	};
 
 	return (
 		<div>
-			{weekday}, {month} {day} {year}, {hour}:{min}:{sec}
+			{formatDate(date)}
 		</div>
 	);
 }

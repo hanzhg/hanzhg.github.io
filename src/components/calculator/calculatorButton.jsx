@@ -41,14 +41,14 @@ class CalculatorButton extends Component {
 
 CalculatorButton.defaultProps = {
     className: "",
-    value: "",
-    onClick: null,
+    value: "0",
+    onClick: () => {},
 };
 
 CalculatorButton.propTypes = {
     className: PropTypes.string,
     value: PropTypes.string,
-    onClick: PropTypes.func,
+    onClick: PropTypes.func.isRequired,
 };
 
 export default CalculatorButton;

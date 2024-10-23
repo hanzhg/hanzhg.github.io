@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../../styles.css';
 
-export default function CalculatorScreen(props) {
+export default function CalculatorScreen({ value = '' }) {
     return (
         <div style={{
             gridColumnEnd: 'span 4'
@@ -11,19 +11,15 @@ export default function CalculatorScreen(props) {
                 fontSize: '20px',
                 textAlign: 'center'
             }}>
-            HI-25ZH
-            <div style={{fontSize:'16px', paddingTop: '5px'}}>Han Instruments</div>
+                HI-25ZH
+                <div style={{fontSize:'16px', paddingTop: '5px'}}>Han Instruments</div>
             </div>
             <div className="calculator-screen">
-                {props.value}
+                {value}
             </div>
         </div>
     );
 }
-
-CalculatorScreen.defaultProps = {
-    value: '',
-};
 
 CalculatorScreen.propTypes = {
     value: PropTypes.string,

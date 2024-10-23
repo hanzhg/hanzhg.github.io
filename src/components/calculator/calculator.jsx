@@ -13,51 +13,40 @@ import {
 import "../../styles.css";
 
 class Calculator extends Component {
-    constructor() {
-        super();
-        [
-            "number",
-            "clearAll",
-            "clearEntry",
-            "operation",
-            "percentage",
-            "equal",
-            "backspace",
-        ].forEach((method) => {
-            this[method] = this[method].bind(this);
-        });
+    state = {
+        entry: "0",
+    };
 
-        this.state = {
-            entry: "0",
-        };
-    }
-
-    number(num) {
+    number = (num) => {
         this.setState(number.bind(null, num));
-    }
+    };
 
-    clearAll() {
+    clearAll = () => {
         this.setState(clearAll);
-    }
+    };
 
-    clearEntry(number) {
+    clearEntry = (number) => {
         this.setState(clearEntry.bind(null, number));
-    }
+    };
 
-    operation(op) {
+    operation = (op) => {
         this.setState(operation.bind(null, op));
-    }
+    };
 
-    percentage() {
+    percentage = () => {
         this.setState(percentage);
-    }
+    };
 
-    equal() {
+    equal = () => {
         this.setState(equal);
-    }
+    };
 
-    backspace(number) {
+    backspace = (number) => {
         this.setState(backspace.bind(number));
+    };
+
+    renderButton(value, onClick) {
+        return <Button value={value} onClick={onClick} />;
     }
 
     render() {
@@ -65,26 +54,26 @@ class Calculator extends Component {
             <div className="calculator">
                 <div className="calculator-container">
                     <CalculatorScreen value={this.state.entry} />
-                    <Button value="AC" onClick={this.clearAll} />
-                    <Button value="CE" onClick={this.clearEntry} />
-                    <Button value="%" onClick={this.percentage} />
-                    <Button value="/" onClick={this.operation} />
-                    <Button value="7" onClick={this.number} />
-                    <Button value="8" onClick={this.number} />
-                    <Button value="9" onClick={this.number} />
-                    <Button value="x" onClick={this.operation} />
-                    <Button value="4" onClick={this.number} />
-                    <Button value="5" onClick={this.number} />
-                    <Button value="6" onClick={this.number} />
-                    <Button value="-" onClick={this.operation} />
-                    <Button value="1" onClick={this.number} />
-                    <Button value="2" onClick={this.number} />
-                    <Button value="3" onClick={this.number} />
-                    <Button value="+" onClick={this.operation} />
-                    <Button value="0" onClick={this.number} />
-                    <Button value="." onClick={this.number} />
-                    <Button value="DEL" onClick={this.backspace} />
-                    <Button value="=" onClick={this.equal} />
+                    {this.renderButton("AC", this.clearAll)}
+                    {this.renderButton("CE", this.clearEntry)}
+                    {this.renderButton("%", this.percentage)}
+                    {this.renderButton("/", this.operation)}
+                    {this.renderButton("7", this.number)}
+                    {this.renderButton("8", this.number)}
+                    {this.renderButton("9", this.number)}
+                    {this.renderButton("x", this.operation)}
+                    {this.renderButton("4", this.number)}
+                    {this.renderButton("5", this.number)}
+                    {this.renderButton("6", this.number)}
+                    {this.renderButton("-", this.operation)}
+                    {this.renderButton("1", this.number)}
+                    {this.renderButton("2", this.number)}
+                    {this.renderButton("3", this.number)}
+                    {this.renderButton("+", this.operation)}
+                    {this.renderButton("0", this.number)}
+                    {this.renderButton(".", this.number)}
+                    {this.renderButton("DEL", this.backspace)}
+                    {this.renderButton("=", this.equal)}
                 </div>
             </div>
         );

@@ -8,18 +8,18 @@
     --text-primary: white;
 }
 
-body,
-html {
+body, html, #root{
     font-family: Helvetica, Arial, sans-serif;
     transition: 600ms;
     background-color: var(--background);
     overflow-x: hidden;
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
     height: 100%;
-    width: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scrollbar-width: none; /* For Firefox */
 }
 
 #name {
@@ -32,11 +32,17 @@ html {
 
 canvas {
     transition: all 600ms;
+    height: auto;
+    overflow: hidden;
+    display: block;
+    scrollbar-width: none; /* For Firefox */
 }
 
-nav ul {
+nav ul, nav {
     margin: 0;
     padding: 0;
+    list-style: none;
+    text-align: center;
 }
 
 nav {
@@ -44,9 +50,6 @@ nav {
     width: 100%;
     max-width: 800px;
     overflow: hidden;
-    list-style: none;
-    padding: 0;
-    text-align: center;
 }
 
 nav li {
@@ -103,7 +106,7 @@ input {
 
 #buttons {
     text-align: center;
-    margin: 5px 0 5px 0;
+    padding: 5px 0;
 }
 
 .controls {
@@ -111,7 +114,7 @@ input {
     border-width: 0;
     font-size: 15pt;
     line-height: 20px;
-    margin: 0 5px 0;
+    margin: 0 5px;
     padding: 8px 12px;
     text-align: center;
     max-width: 600px;
@@ -125,13 +128,13 @@ select {
     border-radius: 8px;
     text-align: center;
     font-size: 15pt;
-    margin: 0 5px 0;
+    margin: 0 5px;
     padding: 3px 0;
     border-width: 2px;
 }
 
 .box {
-    margin: 15px auto 10px;
+    padding: 15px 0 10px;
     display: flex;
 }
 
@@ -148,7 +151,7 @@ select {
     border: none;
     display: inline-block;
     padding: 0;
-    margin: 5px 20px 5px 0px;
+    margin: 5px 20px 5px 0;
     height: 25px;
     width: 25px;
     border-radius: 50%;
@@ -201,7 +204,6 @@ img {
     }
     #content {
         font-size: 1em;
-
     }
 }
 
@@ -241,7 +243,7 @@ img {
     z-index: 10;
     transition: 600ms;
     font-weight: 600;
-}
+    }
 
 .calculator-button {
     cursor: pointer;
@@ -255,7 +257,7 @@ img {
     padding: 10px 0;
     transition: 600ms;
     font-weight: bold;
-}
+    }
 
 .calculator-button.pressed {
     background-color: #8d8d8d;
@@ -306,7 +308,7 @@ img {
 
 #stopwatch-menu button {
     margin: 0 5px 10px 5px;
-}
+    }
 
 .square-box {
     position: relative;
@@ -327,13 +329,20 @@ img {
     background-image: -moz-linear-gradient(-45deg, rgba(255,255,220,.3) 0%, transparent 100%);  
     background-image: -o-linear-gradient(-45deg, rgba(255,255,220,.3) 0%, transparent 100%);
     background-image: -ms-linear-gradient(-45deg, rgba(255,255,220,.3) 0%, transparent 100%);
-}
+    }
 
 .start-button:hover {
     background-color: grey;
 }
 
 p {
+    font-size: 15pt;
+    color: var(--text-primary);
+    transition: 600ms;
+}
+
+label {
+    user-select: none;
     font-size: 15pt;
     color: var(--text-primary);
     transition: 600ms;
