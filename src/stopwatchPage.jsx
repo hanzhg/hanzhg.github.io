@@ -5,9 +5,7 @@ export default function StopwatchPage() {
     return (
         <>
             <Navbar />
-            <div className="centered">
-                <Stopwatch />
-            </div>
+            <Stopwatch />
         </>
     );
 }
