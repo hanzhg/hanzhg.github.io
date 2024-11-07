@@ -9,6 +9,7 @@ import StopwatchPage from "./stopwatchPage";
 import ShooterPage from "./shooterPage";
 import Navbar from "./components/navbar";
 import Message from "./components/message";
+import PicturesPage from "./picturesPage";
 
 const NotFoundPage = () => (
     <>
@@ -24,6 +25,7 @@ const AppRoutes = () => (
         <Route path="/calculator" element={<CalculatorPage />} />
         <Route path="/stopwatch" element={<StopwatchPage />} />
         <Route path="/shooter" element={<ShooterPage />} />
+        <Route path="/pictures" element={<PicturesPage />} />
         <Route path="*" element={<NotFoundPage />} />
     </Routes>
 );

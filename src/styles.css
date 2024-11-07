@@ -48,14 +48,14 @@ nav ul, nav {
 nav {
     margin: auto;
     width: 100%;
-    max-width: 800px;
+    max-width: 870px;
     overflow: hidden;
 }
 
 nav li {
     display: inline-block;
     border-radius: 10px;
-    width: 130px;
+    width: 120px;
     padding: 2px 12px 10px;
     user-select: none;
 }
@@ -176,7 +176,7 @@ select {
     transition: 600ms;
 }
 
-img {
+.pfp {
     max-width: 60%;
     max-height: 500px;
     animation: fadeIn ease 1s;
@@ -193,23 +193,18 @@ img {
 }
 
 .centered {
-    height: calc(100vh - 150px);
+    height: calc(100vh - 95px);
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--text-primary);
+    flex-direction: 'column'
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
-    .centered {
-        height: auto;
-    }
-    img {
-        padding-top: 10px;
-        height: 200px;
-    }
     #content {
+        height: auto;
         font-size: 1em;
+        
     }
 }
 

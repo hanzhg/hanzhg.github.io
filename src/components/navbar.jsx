@@ -71,6 +71,9 @@ export default function Navbar() {
                 <li>
                     <Link to={"/shooter"}>Shooter</Link>
                 </li>
+                <li>
+                    <Link to={"/pictures"}>Pictures</Link>
+                </li>
             </nav>
         </>
     );
