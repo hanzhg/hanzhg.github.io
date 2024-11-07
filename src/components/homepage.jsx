@@ -7,7 +7,7 @@ export default function Homepage() {
     return (
       <div className="centered">
         <div id="content">
-            <img className="pfp" src ="/pfp.JPG" />
+            <img src ="/pfp.JPG" />
                 <div>
                 👋, I'm Han, a graduate from <a className="links" href="https://www.umontreal.ca" target="_blank" rel="noopener noreferrer">Université de Montréal</a> with a major in Computer Science.
                 <br />
