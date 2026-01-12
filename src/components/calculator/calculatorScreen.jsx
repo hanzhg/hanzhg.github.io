@@ -1,26 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import '../../styles.css';
 
-export default function CalculatorScreen({ value = '' }) {
+const CalculatorScreen = ({ value = '' }) => {
     return (
-        <div style={{
-            gridColumnEnd: 'span 4'
-        }}>
-            <div style={{
-                fontSize: '20px',
-                textAlign: 'center'
-            }}>
+        <div className="calculator-header">
+            <div className="calculator-brand">
                 HI-25ZH
-                <div style={{fontSize:'16px', paddingTop: '5px'}}>Han Instruments</div>
+                <div className="calculator-subtext">Han Instruments</div>
             </div>
+
             <div className="calculator-screen">
                 {value}
             </div>
         </div>
     );
-}
-
-CalculatorScreen.propTypes = {
-    value: PropTypes.string,
 };
+
+export default React.memo(CalculatorScreen);

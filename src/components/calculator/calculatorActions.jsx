@@ -3,6 +3,9 @@ export function number(number, prevState) {
     let newEntry;
 
     if (number === ".") {
+        if (entry.includes(".")) {
+            return prevState;
+        }
         newEntry = entry + number;
     } else if (operation == null || entry !== memory) {
         newEntry = String(parseFloat(entry + number));
@@ -10,7 +13,10 @@ export function number(number, prevState) {
         newEntry = number;
     }
 
-    return { entry: newEntry };
+    return { 
+        ...prevState,
+        entry: newEntry 
+    };
 }
 
 export function clearAll() {
@@ -21,20 +27,44 @@ export function clearAll() {
     };
 }
 
-export function clearEntry() {
-    return { entry: "0" };
+export function clearEntry(prevState) {
+    return { 
+        ...prevState,
+        entry: "0" 
+    };
 }
 
 export function operation(operation, prevState) {
+    if (prevState.operation !== null && prevState.memory !== "0") {
+        const result = calculate(prevState);
+        return {
+            entry: result,
+            memory: result,
+            operation,
+        };
+    }
+    
     return {
+        ...prevState,
         memory: prevState.entry,
         operation,
     };
 }
 
 export function percentage(prevState) {
+    if (prevState.operation !== null && prevState.memory !== "0") {
+        const baseValue = calculate(prevState);
+        const result = String(parseFloat(baseValue) / 100);
+        return {
+            entry: result,
+            memory: result,
+            operation: null,
+        };
+    }
+    
     const result = String(parseFloat(prevState.entry) / 100);
     return {
+        ...prevState,
         entry: result,
         memory: result,
         operation: null,
@@ -70,9 +100,8 @@ export function equal(prevState) {
 
 export function backspace(prevState) {
     const result = prevState.entry.slice(0, -1);
-    if (result === "") {
-        return { entry: "0" };
-    } else {
-        return { entry: result };
-    }
+    return {
+        ...prevState,
+        entry: result === "" ? "0" : result
+    };
 }

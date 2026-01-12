@@ -5,9 +5,7 @@ export default function CalculatorPage() {
     return (
         <>
             <Navbar />
-            <div className="centered">
-                <Calculator/>
-            </div>
+            <Calculator/>
         </>
     );
 }

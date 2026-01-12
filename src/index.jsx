@@ -2,13 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import "./styles.css";
-import App from "./App";
+import App from "./app";
 import CanvasPage from "./canvasPage";
 import CalculatorPage from "./calculatorPage";
 import StopwatchPage from "./stopwatchPage";
 import ShooterPage from "./shooterPage";
 import Navbar from "./components/navbar";
 import Message from "./components/message";
+import PicturesPage from "./picturesPage";
+import ScreensavePage from "./screensaverPage";
 
 const NotFoundPage = () => (
     <>
@@ -24,6 +26,8 @@ const AppRoutes = () => (
         <Route path="/calculator" element={<CalculatorPage />} />
         <Route path="/stopwatch" element={<StopwatchPage />} />
         <Route path="/shooter" element={<ShooterPage />} />
+        <Route path="/pictures" element={<PicturesPage />} />
+        <Route path="/screensaver" element={<ScreensavePage />} />
         <Route path="*" element={<NotFoundPage />} />
     </Routes>
 );

@@ -1,54 +1,36 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useCallback } from "react";
 import "../../styles.css";
 
-class CalculatorButton extends Component {
-    constructor() {
-        super();
+const CalculatorButton = ({ className = "", value = "0", onClick }) => {
+    const [isPressed, setIsPressed] = useState(false);
 
-        this.state = {
-            isPressed: false,
-        };
+    const handleClick = useCallback(() => {
+        onClick(value);
+        setIsPressed(true);
 
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick() {
-        this.props.onClick(this.props.value);
-        this.setState({ isPressed: true });
-
-        setTimeout(() => {
-            this.setState({ isPressed: false });
+        const timer = setTimeout(() => {
+            setIsPressed(false);
         }, 200);
-    }
 
-    render() {
-        const { className, value } = this.props;
-        const { isPressed } = this.state;
+        return () => clearTimeout(timer);
+    }, [onClick, value]);
 
-        const buttonClass = `calculator-button ${className} ${isPressed ? "pressed" : ""}`;
+    const getButtonType = () => {
+        if (["+", "-", "x", "/", "."].includes(value)) return "operator";
+        if (["AC", "CE", "%"].includes(value)) return "function";
+        if (value === "=") return "equal";
+        if (value === "DEL") return "delete";
+        if (!isNaN(value)) return "number";
+        return "";
+    };
 
-        return (
-            <button
-                className={buttonClass}
-                onClick={this.handleClick}
-            >
-                {value}
-            </button>
-        );
-    }
-}
+    const buttonClass = `calculator-button ${getButtonType()} ${className} ${isPressed ? "pressed" : ""}`;
 
-CalculatorButton.defaultProps = {
-    className: "",
-    value: "0",
-    onClick: () => {},
+    return (
+        <button className={buttonClass} onClick={handleClick}>
+            {value}
+        </button>
+    );
 };
 
-CalculatorButton.propTypes = {
-    className: PropTypes.string,
-    value: PropTypes.string,
-    onClick: PropTypes.func.isRequired,
-};
-
-export default CalculatorButton;
+export default React.memo(CalculatorButton);

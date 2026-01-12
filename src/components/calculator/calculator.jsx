@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useCallback } from "react";
 import CalculatorScreen from "./calculatorScreen";
 import Button from "./calculatorButton";
 import {
@@ -12,72 +12,74 @@ import {
 } from "./calculatorActions";
 import "../../styles.css";
 
-class Calculator extends Component {
-    state = {
+const Calculator = () => {
+    const [state, setState] = useState({
         entry: "0",
-    };
+        memory: "0",
+        operation: null
+    });
 
-    number = (num) => {
-        this.setState(number.bind(null, num));
-    };
+    const handleNumber = useCallback((num) => {
+        setState(prevState => number(num, prevState));
+    }, []);
 
-    clearAll = () => {
-        this.setState(clearAll);
-    };
+    const handleClearAll = useCallback(() => {
+        setState(clearAll());
+    }, []);
 
-    clearEntry = (number) => {
-        this.setState(clearEntry.bind(null, number));
-    };
+    const handleClearEntry = useCallback(() => {
+        setState(prevState => clearEntry(prevState));
+    }, []);
 
-    operation = (op) => {
-        this.setState(operation.bind(null, op));
-    };
+    const handleOperation = useCallback((op) => {
+        setState(prevState => operation(op, prevState));
+    }, []);
 
-    percentage = () => {
-        this.setState(percentage);
-    };
+    const handlePercentage = useCallback(() => {
+        setState(prevState => percentage(prevState));
+    }, []);
 
-    equal = () => {
-        this.setState(equal);
-    };
+    const handleEqual = useCallback(() => {
+        setState(prevState => equal(prevState));
+    }, []);
 
-    backspace = (number) => {
-        this.setState(backspace.bind(number));
-    };
+    const handleBackspace = useCallback(() => {
+        setState(prevState => backspace(prevState));
+    }, []);
 
-    renderButton(value, onClick) {
+    const renderButton = useCallback((value, onClick) => {
         return <Button value={value} onClick={onClick} />;
-    }
+    }, []);
 
-    render() {
-        return (
+    return (
+        <div className="centered">
             <div className="calculator">
                 <div className="calculator-container">
-                    <CalculatorScreen value={this.state.entry} />
-                    {this.renderButton("AC", this.clearAll)}
-                    {this.renderButton("CE", this.clearEntry)}
-                    {this.renderButton("%", this.percentage)}
-                    {this.renderButton("/", this.operation)}
-                    {this.renderButton("7", this.number)}
-                    {this.renderButton("8", this.number)}
-                    {this.renderButton("9", this.number)}
-                    {this.renderButton("x", this.operation)}
-                    {this.renderButton("4", this.number)}
-                    {this.renderButton("5", this.number)}
-                    {this.renderButton("6", this.number)}
-                    {this.renderButton("-", this.operation)}
-                    {this.renderButton("1", this.number)}
-                    {this.renderButton("2", this.number)}
-                    {this.renderButton("3", this.number)}
-                    {this.renderButton("+", this.operation)}
-                    {this.renderButton("0", this.number)}
-                    {this.renderButton(".", this.number)}
-                    {this.renderButton("DEL", this.backspace)}
-                    {this.renderButton("=", this.equal)}
+                    <CalculatorScreen value={state.entry} />
+                    {renderButton("AC", handleClearAll)}
+                    {renderButton("CE", handleClearEntry)}
+                    {renderButton("%", handlePercentage)}
+                    {renderButton("/", handleOperation)}
+                    {renderButton("7", handleNumber)}
+                    {renderButton("8", handleNumber)}
+                    {renderButton("9", handleNumber)}
+                    {renderButton("x", handleOperation)}
+                    {renderButton("4", handleNumber)}
+                    {renderButton("5", handleNumber)}
+                    {renderButton("6", handleNumber)}
+                    {renderButton("-", handleOperation)}
+                    {renderButton("1", handleNumber)}
+                    {renderButton("2", handleNumber)}
+                    {renderButton("3", handleNumber)}
+                    {renderButton("+", handleOperation)}
+                    {renderButton("0", handleNumber)}
+                    {renderButton(".", handleNumber)}
+                    {renderButton("DEL", handleBackspace)}
+                    {renderButton("=", handleEqual)}
                 </div>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
-export default Calculator;
+export default React.memo(Calculator);
