@@ -26,7 +26,7 @@ const useTheme = () => {
 	return [theme, toggleTheme];
 };
 
-export default function Navbar() {
+const Navbar = () => {
 	const [theme, toggleTheme] = useTheme();
 
 	return (
@@ -56,4 +56,6 @@ export default function Navbar() {
 			</nav>
 		</>
 	);
-}
+};
+
+export default React.memo(Navbar);
