@@ -6,6 +6,23 @@ import App from "./app";
 import Navbar from "./components/navbar";
 import Message from "./components/message";
 
+
+(function cleanTrackingParams() {
+    const paramsToRemove = ['utm_source', 'utm_medium', 'utm_content','utm_term', 'utm_campaign', 'fbclid'];
+    try {
+        const url = new URL(window.location.href);
+        let changed = false;
+        paramsToRemove.forEach(k => { if (url.searchParams.has(k)) { url.searchParams.delete(k); changed = true; } });
+        if (changed) {
+            const newSearch = url.searchParams.toString();
+            const newUrl = url.pathname + (newSearch ? '?' + newSearch : '') + url.hash;
+            history.replaceState(null, '', newUrl);
+        }
+    } catch (e) {
+        console.debug('UTM strip failed:', e);
+    }
+})();
+
 const CanvasPage = lazy(() => import("./canvasPage"));
 const CalculatorPage = lazy(() => import("./calculatorPage"));
 const StopwatchPage = lazy(() => import("./stopwatchPage"));

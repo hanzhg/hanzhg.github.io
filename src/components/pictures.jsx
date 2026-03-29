@@ -122,10 +122,11 @@ const Gallery = () => {
 
 	useEffect(() => {
 		const loadImages = async () => {
-			const files = import.meta.glob('./images/*.(png|jpg|jpeg|svg)');
+			const files = import.meta.glob('./images/*.{png,jpg,jpeg,svg}');
 			const images = await Promise.all(
 				Object.values(files).map((file) => file().then((module) => module.default))
 			);
+			if (images.length === 0) console.warn('Pictures: no images found in ./images');
 			setImages(images);
 		};
 		loadImages();
