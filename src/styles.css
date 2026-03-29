@@ -263,7 +263,7 @@ select {
     background-color: #666666;
     border-radius: 50%;
     font-size: 20px;
-    padding: 15px 0;
+    padding: 0;
     width: 45px;
     height: 45px;
     margin: 2px;
@@ -271,6 +271,8 @@ select {
     font-weight: bold;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .calculator-button:hover {
