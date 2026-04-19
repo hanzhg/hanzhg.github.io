@@ -54,7 +54,7 @@ const CanvasControls = ({ selectedColor, setSelectedColor, customColor, setCusto
                 ))}
             </select>
             <input type="range" min="1" max="50" value={brushSize} onChange={(e) => setBrushSize(e.target.value)} />
-            <button className="controls" onClick={clear} style={{ margin: "5px 10px" }}>
+            <button className="controls" onClick={clear}>
                 Clear
             </button>
         </div>
@@ -99,10 +99,18 @@ export default function Canvas() {
             height: containerHeight
         });
 
-        canvas.width = containerWidth;
-        canvas.height = containerHeight;
+        // support high-DPI / Retina screens (iPhone)
+        const dpr = window.devicePixelRatio || 1;
+        const cssWidth = containerWidth;
+        const cssHeight = containerHeight;
+
+        canvas.width = Math.floor(cssWidth * dpr);
+        canvas.height = Math.floor(cssHeight * dpr);
+        canvas.style.width = `${cssWidth}px`;
+        canvas.style.height = `${cssHeight}px`;
 
         const context = canvas.getContext("2d");
+        context.setTransform(dpr, 0, 0, dpr, 0, 0);
         context.lineCap = "round";
         context.strokeStyle = "#000";
         context.lineWidth = 5;
@@ -304,8 +312,6 @@ export default function Canvas() {
             >
                 <canvas
                     ref={canvasRef}
-                    width={dimensions.width}
-                    height={dimensions.height}
                     onMouseDown={handleMouseDown}
                     onMouseUp={handleMouseUp}
                     onMouseLeave={handleMouseUp}

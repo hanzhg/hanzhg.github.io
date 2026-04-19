@@ -1,9 +1,14 @@
 :root {
-    --background: white;
-    --text-primary: black;
     --transition-speed: 600ms;
+    --header-icon-size: 25px;
+    --header-icon-font-size: 25px;
+    --header-gap: 20px;
+    --font-base: 16px;
+    --ui-font-size: 16px;
+    --control-font-size: 16px;
+    --font-large: 20px;
     font-family: Inter, Arial, sans-serif;
-    font-feature-settings: 'liga' 1, 'calt' 1;
+    font-feature-settings: 'liga'1, 'calt'1;
 }
 
 /* small utility for scrollable containers to avoid inline styles */
@@ -12,12 +17,19 @@
 }
 
 @supports (font-variation-settings: normal) {
-    :root { font-family: InterVariable, Arial, sans-serif; }
+    :root {
+        font-family: InterVariable, Arial, sans-serif;
+    }
 }
 
 [data-theme="dark"] {
     --background: black;
     --text-primary: white;
+}
+
+[data-theme="light"] {
+    --background: white;
+    --text-primary: black;
 }
 
 body,
@@ -52,36 +64,6 @@ canvas {
     scrollbar-width: none;
 }
 
-nav ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    text-align: center;
-}
-
-nav {
-    margin: auto;
-    width: 100%;
-    overflow: hidden;
-    padding: 0;
-}
-
-nav li {
-    display: inline-block;
-    border-radius: 10px;
-    width: 130px;
-    padding: 2px 12px 10px;
-    user-select: none;
-}
-
-nav a {
-    font-size: 15pt;
-    text-decoration: none;
-    color: var(--text-primary);
-    user-select: none;
-    transition: 600ms;
-}
-
 #icons {
     padding: 0;
     padding-top: 10px;
@@ -109,25 +91,25 @@ nav a {
     display: block;
     margin: 0 auto 10px;
     animation: fadeIn ease 1s;
-    width: clamp(150px, 25vw, 300px);
+    width: clamp(150px, 25vw, 400px);
     object-fit: contain;
-    max-width: 40%;
+    max-width: 50%;
 }
 
 .intro-text {
     display: inline-block;
     line-height: 2;
-    font-size: clamp(9px, 2vw, 20px);
-    transition: 600ms;
+    font-size: clamp(9px, 2vw, 18px);
+    transition: var(--transition-speed);
 }
 
 input {
     cursor: pointer;
     border-radius: 0;
-    margin: 0 5px;
+    margin: 0;
     width: 100px;
     accent-color: var(--text-primary);
-    transition: 600ms;
+    transition: var(--transition-speed);
 }
 
 #buttons {
@@ -138,7 +120,8 @@ input {
 .controls {
     border-radius: 8px;
     border-width: 0;
-    font-size: 15pt;
+    font-size: var(--control-font-size);
+    color: black;
     line-height: 20px;
     margin: 0 5px;
     padding: 8px 12px;
@@ -151,55 +134,137 @@ input {
 }
 
 select {
+    text-align: center;
+    cursor: pointer;
     background-color: #f0f0f0;
     border-radius: 8px;
     border-width: 0;
-    font-size: 15pt;
-    margin: 0 5px;
-    padding: 6px 0;
-    text-align: center;
-    display: inline;
-    overflow: hidden;
-    list-style: none;
-    cursor: pointer;
     font-family: inherit;
+    font-size: var(--control-font-size);
+    background-image: none;
+    text-align-last: center;
+    padding: 7px 5px 7px 0;
+    margin: 0 5px;
+    width: 95px;
 }
 
 .box {
     padding: 15px 0 10px;
     display: flex;
+    position: relative;
+    z-index: 1100;
 }
 
 .center {
     flex: 1;
     display: flex;
     justify-content: center;
-    margin-left: 45px;
+    margin-left: 0;
 }
 
 #switch {
+    margin: 5px 20px 5px 0;
+}
+
+#menu {
+    margin: 5px 0 5px 20px;
+}
+
+.header-icon {
     color: var(--text-primary);
     background-color: transparent;
     border: none;
     display: inline-block;
     padding: 0;
-    margin: 5px 20px 5px 0;
-    height: 25px;
-    width: 25px;
+    height: var(--header-icon-size);
+    width: var(--header-icon-size);
     border-radius: 50%;
-    text-align: right;
-    font-size: 25px;
-    transition: color 500ms;
+    text-align: center;
+    font-size: var(--header-icon-font-size);
+    transition: color var(--transition-speed);
     cursor: pointer;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     outline-offset: 5px;
 }
 
-.links {
+.plus-icon {
+    position: relative;
+    display: inline-block;
+    width: var(--header-icon-size);
+    height: var(--header-icon-size);
+    background: transparent;
+    padding: 0;
+}
+
+.plus-icon::before,
+.plus-icon::after {
+    content: '';
+    position: absolute;
+    width: 90%;
+    height: 3px;
+    background: currentColor;
+    transform-origin: center;
+    transition: transform 200ms cubic-bezier(0.7, 0, 0.5, 1.3);
+}
+
+.plus-icon::before {
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.plus-icon::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.plus-icon.open::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.plus-icon.open::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 150px;
+    background: var(--background);
+    color: var(--text-primary);
+    transform: translateX(-100%);
+    transition: transform 200ms ease, background-color var(--transition-speed), color var(--transition-speed);
+    z-index: 1000;
+    padding-top: 65px;
+    box-shadow: .1px 0 5px #88888852;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+    transition: transform 200ms ease, background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.sidebar ul {
+    margin: 0;
+    padding: 0;
+    padding-left: 25px;
+    list-style: none;
+}
+
+.sidebar li {
+    user-select: none;
+    margin-bottom: 15px;
+}
+
+.sidebar a {
+    font-size: 18px;
+}
+
+.links,
+.sidebar a {
     text-decoration: none;
     color: var(--text-primary);
-    transition: 600ms;
+    transition: var(--transition-speed);
 }
 
 @keyframes fadeIn {
@@ -213,7 +278,7 @@ select {
 }
 
 .centered {
-    height: calc(100vh - 95px);
+    height: calc(100vh - 60px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -221,19 +286,6 @@ select {
 
 .gallery-container {
     justify-content: center;
-}
-
-@media (max-width: 768px) {
-    .gallery-container {
-        justify-content: flex-start;
-    }
-    .centered {
-        height: auto;
-    }
-    .calculator {
-        transform: scale(0.7);
-        transform-origin: top;
-    }
 }
 
 .calculator {
@@ -262,14 +314,13 @@ select {
     color: #ffffff;
     background-color: #666666;
     border-radius: 50%;
-    font-size: 20px;
+    font-size: 18px;
     padding: 0;
     width: 45px;
     height: 45px;
     margin: 2px;
     transition: all 0.2s ease;
     font-weight: bold;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -387,7 +438,7 @@ select {
     border-style: solid;
     border-width: thin;
     color: var(--text-primary);
-    font-size: 25px;
+    font-size: 24px;
     margin: 40px 0 10px;
     overflow: hidden;
     padding: 10px;
@@ -395,8 +446,70 @@ select {
     text-overflow: ellipsis;
     white-space: nowrap;
     z-index: 10;
-    transition: 600ms;
+    transition: var(--transition-speed);
     font-weight: 600;
+}
+
+.human-sort-centered {
+    height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 0;
+}
+
+.human-sort-area {
+    margin-top: 12px;
+    position: relative;
+    user-select: none
+}
+
+.bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+    height: 240px;
+    padding: 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.bar {
+    flex: 1 1 auto;
+    border-radius: 6px;
+    cursor: grab;
+}
+
+.bar.dragging-item {
+    display: none;
+    width: inherit;
+}
+
+.bars {
+    position: relative;
+}
+
+.bar.placeholder {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+#human-sort-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sort-status {
+    margin: 0 5px;
+    line-height: 20px;
+    align-items: center;
+    padding: 8px 12px 8px 11.1px;
+    font-size: var(--control-font-size);
+    font-weight: 700;
+    color: #1b9a1b;
+    pointer-events: none;
 }
 
 .calculator-screen::-webkit-scrollbar {
@@ -414,7 +527,7 @@ select {
     align-items: center;
     font-size: calc(5rem + 0.5vw);
     color: var(--text-primary);
-    transition: 600ms;
+    transition: var(--transition-speed);
 }
 
 #timer span {
@@ -448,7 +561,7 @@ select {
     width: 200px;
     text-align: center;
     color: var(--text-primary);
-    transition: 600ms;
+    transition: var(--transition-speed);
 }
 
 #stopwatch-menu button {
@@ -458,7 +571,7 @@ select {
 .random-button {
     position: absolute;
     background-color: #007bff;
-    padding: 30px;
+    padding: 20px;
     border: none;
     cursor: pointer;
     border-radius: 50%;
@@ -470,60 +583,29 @@ select {
 }
 
 p {
-    font-size: 15pt;
+    font-size: var(--ui-font-size);
     color: var(--text-primary);
-    transition: 600ms;
+    transition: var(--transition-speed);
 }
 
 label {
     user-select: none;
-    font-size: 15pt;
+    font-size: var(--ui-font-size);
     color: var(--text-primary);
-    transition: 600ms;
-}
-
-/* Lights page styles (kept minimal to avoid overriding component styles) */
-.lights-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 95px);
-}
-
-.lights-scroller-viewport {
-    overflow: hidden;
-    width: min(96vw, 1200px);
-}
-
-.lights-scroller-inner {
-    display: flex;
-    align-items: center;
-    will-change: transform;
-    transition: transform 120ms linear;
-}
-
-.lights-grid {
-    /* grid-gap handled in component styles; keep fallback */
-    gap: 12px;
-    justify-content: center;
-    align-items: center;
-}
-
-.light {
-    /* keep simple defaults; component JS drives appearance */
-    border-radius: 50%;
-    background: hsl(0 85% 55%);
-    transition: background 200ms linear, transform 250ms ease, box-shadow 200ms ease;
-    will-change: transform, background, box-shadow;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-    cursor: default;
-}
-
-.light:hover {
-    transform: scale(1.06);
+    transition: var(--transition-speed);
 }
 
 @media (max-width: 768px) {
-    .lights-grid { gap: 8px; }
-    .light { width: auto; height: auto; }
+    .gallery-container {
+        justify-content: flex-start;
+    }
+
+    .centered {
+        height: auto;
+    }
+
+    .human-sort-centered {
+        height: auto;
+        padding: 5px 12px;
+    }
 }

@@ -64,13 +64,13 @@ export default function Shooter() {
         <div>
             {started && button}
             <div id="buttons">
-                <button className="controls" onClick={startGeneration}>
+                <button className="controls" style={{ width: "65px" }} onClick={startGeneration}>
                     Start
                 </button>
-                <button className="controls" onClick={resetGame}>
+                <button className="controls" style={{ width: "65px" }} onClick={resetGame}>
                     Reset
                 </button>
-                <p>Target Hit Count: {buttonCount}</p>
+                <p style={{ fontSize: "18px", userSelect: "none" }}>Target Hit Count: {buttonCount}</p>
             </div>
         </div>
     );

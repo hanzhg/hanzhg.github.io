@@ -89,7 +89,7 @@ const modalStyle = {
 	right: 0,
 	bottom: 0,
 	width: '100vw',
-	height: '100vh',
+	height: '100vh - 60px',
 	backgroundColor: 'var(--background)',
 	display: 'flex',
 	justifyContent: 'center',
@@ -111,8 +111,7 @@ const imageStyle = {
 const containerStyle = {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
-    height: '100%',
+    alignItems: 'center'
 };
 
 const Gallery = () => {
@@ -158,51 +157,53 @@ const Gallery = () => {
 	}, [images.length, currentIndex]);
 
 	return (
-		<div className="gallery-container" style={containerStyle}>
-			<div style={galleryStyle}>
-				<button style={buttonStyle} onClick={goToPrevious}>
-					&#8249;
-				</button>
-				<div style={imageContainerStyle}>
-					{images.length > 0 && (
-						<img
-							src={images[currentIndex]}
-							alt={`Image ${currentIndex + 1} of ${images.length}`}
-							style={galleryImageStyle}
-							onClick={handleImageClick}
-							loading="lazy"
-						/>
+		<div className="centered">
+			<div style={containerStyle}>
+				<div style={galleryStyle}>
+					<button style={buttonStyle} onClick={goToPrevious}>
+						&#8249;
+					</button>
+					<div style={imageContainerStyle}>
+						{images.length > 0 && (
+							<img
+								src={images[currentIndex]}
+								alt={`Image ${currentIndex + 1} of ${images.length}`}
+								style={galleryImageStyle}
+								onClick={handleImageClick}
+								loading="lazy"
+							/>
+						)}
+					</div>
+					<button style={buttonStyle} onClick={goToNext}>
+						&#8250;
+					</button>
+				</div>
+				<div style={previewContainerStyle}>
+				{previewIndices.map((index) =>
+						images[index] ? (
+							<img
+								key={index}
+								src={images[index]}
+								alt={`Preview ${index + 1}`}
+								style={{
+									...previewImageStyle,
+									...(index === currentIndex ? selectedPreviewStyle : {}),
+								}}
+								onClick={() => setCurrentIndex(index)}
+								loading="lazy"
+							/>
+						) : null
 					)}
 				</div>
-				<button style={buttonStyle} onClick={goToNext}>
-					&#8250;
-				</button>
-			</div>
-			<div style={previewContainerStyle}>
-			{previewIndices.map((index) =>
-					images[index] ? (
-						<img
-							key={index}
-							src={images[index]}
-							alt={`Preview ${index + 1}`}
-							style={{
-								...previewImageStyle,
-								...(index === currentIndex ? selectedPreviewStyle : {}),
-							}}
-							onClick={() => setCurrentIndex(index)}
-							loading="lazy"
-						/>
-					) : null
+				{isFullscreen && (
+					<FullscreenImageModal
+						src={images[currentIndex]}
+						onClose={handleCloseFullscreen}
+						onPrev={goToPrevious}
+						onNext={goToNext}
+					/>
 				)}
 			</div>
-			{isFullscreen && (
-				<FullscreenImageModal
-					src={images[currentIndex]}
-					onClose={handleCloseFullscreen}
-					onPrev={goToPrevious}
-					onNext={goToNext}
-				/>
-			)}
 		</div>
 	);
 };

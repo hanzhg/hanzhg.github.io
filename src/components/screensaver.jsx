@@ -40,11 +40,20 @@ export default function Screensaver() {
         const w = window.innerWidth;
         const h = window.innerHeight - navbarHeight;
 
-        canvas.width = w;
-        canvas.height = h;
-        setDimensions({ width: w, height: h });
+        // support high-DPI / Retina displays
+        const dpr = window.devicePixelRatio || 1;
+        const cssW = w;
+        const cssH = h;
+
+        canvas.width = Math.floor(cssW * dpr);
+        canvas.height = Math.floor(cssH * dpr);
+        canvas.style.width = `${cssW}px`;
+        canvas.style.height = `${cssH}px`;
+        setDimensions({ width: cssW, height: cssH });
 
         const ctx = canvas.getContext("2d");
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
         const nameElement = document.getElementById("name");
         if (!nameElement) return;
 
@@ -57,8 +66,8 @@ export default function Screensaver() {
         setTextSize({ width: textWidth, height: textHeight });
 
         positionRef.current = {
-            x: Math.random() * (w - textWidth),
-            y: Math.random() * (h - textHeight)
+            x: Math.random() * Math.max(0, (cssW - textWidth)),
+            y: Math.random() * Math.max(0, (cssH - textHeight))
         };
 
         const angle = randomAngle();
@@ -83,7 +92,12 @@ export default function Screensaver() {
         let animationId;
 
         const draw = () => {
+            // clear the backing buffer properly (handle transform)
+            ctx.save();
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.restore();
+
             ctx.font = fontRef.current;
             ctx.fillStyle = color;
             const { x, y } = positionRef.current;
@@ -100,13 +114,13 @@ export default function Screensaver() {
 
             let hit = false;
 
-            if (x <= 0 || x + textW >= canvas.width) {
+            if (x <= 0 || x + textW >= dimensions.width) {
                 dx = -dx * (0.9 + Math.random() * 0.2);
                 dy = dy * (0.9 + Math.random() * 0.2);
                 hit = true;
             }
 
-            if (y <= 0 || y + textH >= canvas.height) {
+            if (y <= 0 || y + textH >= dimensions.height) {
                 dy = -dy * (0.9 + Math.random() * 0.2);
                 dx = dx * (0.9 + Math.random() * 0.2);
                 hit = true;
@@ -127,7 +141,7 @@ export default function Screensaver() {
 
         animationId = requestAnimationFrame(update);
         return () => cancelAnimationFrame(animationId);
-    }, [color, textSize]);
+    }, [color, textSize, dimensions]);
 
     return (
         <div
@@ -143,8 +157,6 @@ export default function Screensaver() {
         >
             <canvas
                 ref={canvasRef}
-                width={dimensions.width}
-                height={dimensions.height}
                 style={{ display: "block", backgroundColor: "var(--background)" }}
             />
         </div>

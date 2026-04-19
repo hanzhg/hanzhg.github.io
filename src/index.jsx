@@ -29,6 +29,7 @@ const StopwatchPage = lazy(() => import("./stopwatchPage"));
 const ShooterPage = lazy(() => import("./shooterPage"));
 const PicturesPage = lazy(() => import("./picturesPage"));
 const ScreensavePage = lazy(() => import("./screensaverPage"));
+const SortPage = lazy(() => import("./sortPage"));
 
 const NotFoundPage = () => (
     <>
@@ -47,6 +48,7 @@ const AppRoutes = () => (
             <Route path="/shooter" element={<ShooterPage />} />
             <Route path="/pictures" element={<PicturesPage />} />
             <Route path="/screensaver" element={<ScreensavePage />} />
+            <Route path="/sort" element={<SortPage />} />
             <Route path="*" element={<NotFoundPage />} />
         </Routes>
     </Suspense>

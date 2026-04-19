@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import Sidebar from "./sidebar";
 
 const keyName = "theme";
 
@@ -28,32 +28,33 @@ const useTheme = () => {
 
 const Navbar = () => {
 	const [theme, toggleTheme] = useTheme();
+	const [sidebarOpen, setSidebarOpen] = useState(false);
+	const toggleSidebar = () => setSidebarOpen((s) => !s);
+	const closeSidebar = () => setSidebarOpen(false);
 
 	return (
 		<>
 			<div className="box">
+				<button
+					type="button"
+					id="menu"
+					className={`header-icon plus-icon ${sidebarOpen ? "open" : ""}`}
+					onClick={toggleSidebar}
+					aria-label={sidebarOpen ? "Close menu" : "Open menu"}
+					aria-expanded={sidebarOpen}
+				/>
 				<div className="center">
 					<div id="name">Han Zhang</div>
 				</div>
 				<button
 					type="button"
 					id="switch"
-					className={theme === "light" ? "icon fas fa-moon" : "icon fas fa-sun"}
+					className={`header-icon icon fas ${theme === "light" ? "fa-moon" : "fa-sun"}`}
 					onClick={toggleTheme}
 					aria-label="Toggle theme"
 				/>
 			</div>
-			<nav>
-				<ul>
-					<li><Link to="/">Home</Link></li>
-					<li><Link to="/canvas">Canvas</Link></li>
-					<li><Link to="/calculator">Calculator</Link></li>
-					<li><Link to="/stopwatch">Stopwatch</Link></li>
-					<li><Link to="/shooter">Shooter</Link></li>
-					<li><Link to="/pictures">Pictures</Link></li>
-					<li><Link to="/screensaver">Screensaver</Link></li>
-				</ul>
-			</nav>
+			<Sidebar open={sidebarOpen} onClose={closeSidebar} />
 		</>
 	);
 };

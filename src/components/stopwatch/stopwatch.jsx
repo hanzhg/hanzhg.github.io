@@ -49,10 +49,11 @@ const Stopwatch = () => {
         <div>
             <TimeElapsed id="timer" timeElapsed={timeElapsed} />
             <div id="stopwatch-menu">
-                <button className="controls" onClick={toggle}>
+                <button style={{ width: "65px" }} className="controls" onClick={toggle}>
                     {isRunning ? "Stop" : "Start"}
                 </button>
                 <button
+                    style={{ width: "65px" }}
                     className="controls"
                     onClick={isRunning ? lap : reset}
                     disabled={!isRunning && !timeElapsed}
@@ -106,8 +107,8 @@ const LapTimes = ({ lapTimes }) => {
         <table id="lap-times">
             <thead>
                 <tr>
-                    <th width="50px">Lap</th>
-                    <th width="80px">Time</th>
+                    <th width="83px">Lap</th>
+                    <th width="83px">Time</th>
                 </tr>
             </thead>
             <tbody>{rows}</tbody>

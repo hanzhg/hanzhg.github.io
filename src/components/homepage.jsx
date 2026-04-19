@@ -12,7 +12,7 @@ export default function Homepage() {
                 <div className="intro-text">
                     👋, I'm Han, a graduate from <a className="links" href="https://www.umontreal.ca" target="_blank" rel="noopener noreferrer">Université de Montréal</a> with a major in Computer Science.
                     <br />
-                    I'm currently working as a Software Developer II @ <a className="links" href="https://www.morganstanley.com/" target="_blank" rel="noopener noreferrer">Morgan Stanley</a> in the App Services Infra team.
+                    I'm currently a Software Developer II @ <a className="links" href="https://www.morganstanley.com/" target="_blank" rel="noopener noreferrer">Morgan Stanley</a> in the App Services Infra team.
                     <br />
                     I was previously a DevOps Intern @ <a className="links" href="https://www.nuance.com/index.html" target="_blank" rel="noopener noreferrer">Nuance Communications</a> working in the CoreTech Infra team
                     <br />
