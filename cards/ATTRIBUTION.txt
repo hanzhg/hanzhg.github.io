@@ -1,0 +1,5 @@
+The playing card face artwork in faces/ is from the Vector Playing Card Library,
+version 3.2, by Chris Aguilar (https://totalnonsense.com/open-source-vector-playing-cards/).
+
+The card faces are distributed under the GNU Lesser General Public License,
+version 3. A copy of the license is provided as LICENSE.txt.
