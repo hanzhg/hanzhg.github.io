@@ -74,7 +74,7 @@ export default function SortPage() {
     const onTouchEnd = (e) => {
         if (!dragging) return;
         e.preventDefault();
-        onPointerUp(e);
+        onPointerUp();
     };
 
     const onPointerMove = (e) => {
@@ -86,7 +86,7 @@ export default function SortPage() {
         setPlaceholderIndex(hover);
     };
 
-    const onPointerUp = (e) => {
+    const onPointerUp = () => {
         if (!dragging) return;
         const from = draggingIndex;
         let to = placeholderIndex == null ? items.length : placeholderIndex;

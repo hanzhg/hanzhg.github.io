@@ -14,7 +14,8 @@ export default defineConfig(({ command }) => {
     base: '/',
     build: {
       sourcemap: command === 'serve',
-      minify: 'esbuild'
+      minify: 'esbuild',
+      chunkSizeWarningLimit: 800
     },
     optimizeDeps: {
       include: ['react', 'react-dom', 'react-router-dom']

@@ -7,8 +7,10 @@ import Message from "./components/message";
 
 const CanvasPage = lazy(() => import("./canvasPage"));
 const CalculatorPage = lazy(() => import("./calculatorPage"));
+const DiscoPage = lazy(() => import("./discoPage"));
 const StopwatchPage = lazy(() => import("./stopwatchPage"));
 const ShooterPage = lazy(() => import("./shooterPage"));
+const BlackjackPage = lazy(() => import("./components/blackjack/blackjack"));
 const PicturesPage = lazy(() => import("./picturesPage"));
 const ScreensavePage = lazy(() => import("./screensaverPage"));
 const SortPage = lazy(() => import("./sortPage"));
@@ -27,8 +29,10 @@ export default function AppRoutes() {
                 <Route path="/" element={<App />} />
                 <Route path="/canvas" element={<CanvasPage />} />
                 <Route path="/calculator" element={<CalculatorPage />} />
+                <Route path="/disco" element={<DiscoPage />} />
                 <Route path="/stopwatch" element={<StopwatchPage />} />
                 <Route path="/shooter" element={<ShooterPage />} />
+                <Route path="/blackjack" element={<><Navbar /><BlackjackPage /></>} />
                 <Route path="/pictures" element={<PicturesPage />} />
                 <Route path="/screensaver" element={<ScreensavePage />} />
                 <Route path="/sort" element={<SortPage />} />

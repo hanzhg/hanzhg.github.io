@@ -104,15 +104,17 @@ const LapTimes = ({ lapTimes }) => {
         </tr>
     ));
     return (
-        <table id="lap-times">
-            <thead>
-                <tr>
-                    <th width="83px">Lap</th>
-                    <th width="83px">Time</th>
-                </tr>
-            </thead>
-            <tbody>{rows}</tbody>
-        </table>
+        <div className={`lap-times-scroll${lapTimes.length > 10 ? " has-more" : ""}`}>
+            <table id="lap-times">
+                <thead>
+                    <tr>
+                        <th width="83px">Lap</th>
+                        <th width="83px">Time</th>
+                    </tr>
+                </thead>
+                <tbody>{rows}</tbody>
+            </table>
+        </div>
     );
 };
 

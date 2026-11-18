@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 
 // Optimized lookup map where the weather code is the key
 const weatherCodeMap = {
@@ -79,10 +79,9 @@ export default function Weather() {
 
     return (
         <div>
-            Montréal, QC,{" "}
+            Montréal, QC
             {!weatherState.error && weatherState.temperature !== null
-                ? `${weatherState.temperature}°C ${getWeatherIcon(weatherState.weatherCode, weatherState.isDay)}`
-                : "Loading weather data..."}
+                && `, ${weatherState.temperature}°C ${getWeatherIcon(weatherState.weatherCode, weatherState.isDay)}`}
         </div>
     );
 }

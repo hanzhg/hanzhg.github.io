@@ -72,8 +72,6 @@ export default function Canvas() {
     const [mouseDown, setMouseDown] = useState(false);
     const [lastPosition, setPosition] = useState({ x: 0, y: 0 });
     const [brushSize, setBrushSize] = useState(10);
-    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-
     const hue = useRef(0);
 
     const getNavbarHeight = useCallback(() => {
@@ -93,11 +91,6 @@ export default function Canvas() {
         const navbarHeight = getNavbarHeight();
         const containerHeight = window.innerHeight - navbarHeight;
         const containerWidth = window.innerWidth;
-
-        setDimensions({
-            width: containerWidth,
-            height: containerHeight
-        });
 
         // support high-DPI / Retina screens (iPhone)
         const dpr = window.devicePixelRatio || 1;

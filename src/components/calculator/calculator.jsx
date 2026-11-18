@@ -52,7 +52,7 @@ const Calculator = () => {
     }, []);
 
     return (
-        <div className="centered">
+        <div className="centered calculator-centered">
             <div className="calculator">
                 <div className="calculator-container">
                     <CalculatorScreen value={state.entry} />

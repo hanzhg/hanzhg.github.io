@@ -1,24 +1,69 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
 const FullscreenImageModal = React.memo(({ src, onClose, onPrev, onNext }) => {
+	const dialogRef = React.useRef(null);
+	const closeButtonRef = React.useRef(null);
+
 	useEffect(() => {
+		const previousFocus = document.activeElement;
+		closeButtonRef.current?.focus();
+
 		const onKey = (e) => {
 			if (e.key === 'Escape') onClose();
 			if (e.key === 'ArrowLeft' && onPrev) onPrev();
 			if (e.key === 'ArrowRight' && onNext) onNext();
+			if (e.key === 'Tab') {
+				const buttons = dialogRef.current?.querySelectorAll('button:not([disabled])');
+				if (!buttons?.length) return;
+				const firstButton = buttons[0];
+				const lastButton = buttons[buttons.length - 1];
+
+				if (e.shiftKey && document.activeElement === firstButton) {
+					e.preventDefault();
+					lastButton.focus();
+				} else if (!e.shiftKey && document.activeElement === lastButton) {
+					e.preventDefault();
+					firstButton.focus();
+				}
+			}
 		};
 		window.addEventListener('keydown', onKey);
-		return () => window.removeEventListener('keydown', onKey);
+		return () => {
+			window.removeEventListener('keydown', onKey);
+			if (previousFocus instanceof HTMLElement) previousFocus.focus();
+		};
 	}, [onClose, onPrev, onNext]);
 
 	const isMobile = window.innerWidth <= 768;
 	
 	return createPortal(
-		<div style={modalStyle} onClick={onClose} role="dialog" aria-modal="true">
+		<div
+			ref={dialogRef}
+			style={modalStyle}
+			onClick={onClose}
+			role="dialog"
+			aria-modal="true"
+			aria-label="Image viewer"
+		>
 			<div style={{...imageContainerWithArrowsStyle, gap: isMobile ? '0px' : '100px'}}>
+				<button
+					ref={closeButtonRef}
+					type="button"
+					aria-label="Close image viewer"
+					style={{
+						...arrowButtonStyle,
+						top: '12px',
+						right: '12px'
+					}}
+					onClick={(e) => { e.stopPropagation(); onClose(); }}
+				>
+					&times;
+				</button>
 				{onPrev && (
 					<button
+						type="button"
+						aria-label="Previous image"
 						style={{
 							...arrowButtonStyle,
 							left: isMobile ? '5px' : '-25px'
@@ -37,6 +82,8 @@ const FullscreenImageModal = React.memo(({ src, onClose, onPrev, onNext }) => {
 				/>
 				{onNext && (
 					<button
+						type="button"
+						aria-label="Next image"
 						style={{
 							...arrowButtonStyle,
 							right: isMobile ? '5px' : '-25px'
@@ -118,6 +165,7 @@ const Gallery = () => {
 	const [images, setImages] = useState([]);
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [isFullscreen, setIsFullscreen] = useState(false);
+	const galleryImageRef = useRef(null);
 
 	useEffect(() => {
 		const loadImages = async () => {
@@ -130,6 +178,23 @@ const Gallery = () => {
 		};
 		loadImages();
 	}, []);
+
+	useEffect(() => {
+		if (!isFullscreen) return;
+
+		const viewport = document.querySelector('meta[name="viewport"]');
+		if (!viewport) return;
+
+		const originalContent = viewport.content;
+		viewport.content = originalContent
+			.split(',')
+			.filter((setting) => !/^(maximum-scale|user-scalable)\s*=/i.test(setting.trim()))
+			.join(',');
+
+		return () => {
+			viewport.content = originalContent;
+		};
+	}, [isFullscreen]);
 
 	const goToPrevious = useCallback(() =>
 		setCurrentIndex((prevIndex) =>
@@ -145,7 +210,10 @@ const Gallery = () => {
 		[images.length]
 	);
 
-	const handleImageClick = useCallback(() => setIsFullscreen(true), []);
+	const handleImageClick = useCallback(() => {
+		galleryImageRef.current?.focus();
+		setIsFullscreen(true);
+	}, []);
 	const handleCloseFullscreen = useCallback(() => setIsFullscreen(false), []);
 
 	const previewIndices = useMemo(() => {
@@ -166,10 +234,20 @@ const Gallery = () => {
 					<div style={imageContainerStyle}>
 						{images.length > 0 && (
 							<img
+								ref={galleryImageRef}
 								src={images[currentIndex]}
 								alt={`Image ${currentIndex + 1} of ${images.length}`}
+								aria-label={`Open image ${currentIndex + 1} of ${images.length}`}
+								role="button"
+								tabIndex={0}
 								style={galleryImageStyle}
 								onClick={handleImageClick}
+								onKeyDown={(event) => {
+									if (event.key === 'Enter' || event.key === ' ') {
+										event.preventDefault();
+										handleImageClick();
+									}
+								}}
 								loading="lazy"
 							/>
 						)}

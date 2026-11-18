@@ -15,8 +15,8 @@ Personal website made with React, HTML, CSS, JS
 
 To update Node.js, npm, and all project packages to their latest versions:
 
-  1. Install the latest Node.js LTS release. npm's latest release may require a newer Node.js version.
-  2. Update npm with `npm install --global npm@latest`.
+  1. On Windows, upgrade Node.js with `winget upgrade --id OpenJS.NodeJS --exact`. Alternatively, install the latest version from [nodejs.org](https://nodejs.org/).
+  2. Upgrade npm with `npm install --global npm@latest`.
   3. Update dependency version ranges, including major versions, with `npx npm-check-updates -u`.
   4. Install the updated packages and refresh the lockfile with `npm install`.
   5. Verify with `npm run lint` and `npm run build`, and review any required code changes before deploying.
